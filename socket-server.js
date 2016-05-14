@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(8998);
 
 app.listen(process.env.API_PORT, () => console.log('Listening...'));
 

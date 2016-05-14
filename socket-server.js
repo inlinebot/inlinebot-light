@@ -1,7 +1,9 @@
 const express = require('express');
-const server = require('http').Server(app);
 const app = express();
+const server = require('http').Server(app);
 const io = require('socket.io')(server);
+
+app.listen(process.env.API_PORT, () => console.log('Listening...'));
 
 io.on('connection', function(socket){
   socket.join('some room');
@@ -15,5 +17,3 @@ app.get('/:contextId/:mode', (req, res) => {
   io.to(req.params.contextId).emit('set', req.params.mode);
   res.send(req.params);
 });
-
-server.listen(process.env.API_PORT, () => console.log('Listening...'));
